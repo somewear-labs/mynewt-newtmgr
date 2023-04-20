@@ -276,7 +276,7 @@ func (sx *SerialXport) Tx(bytes []byte) error {
 			/* slower platforms take some time to process each segment
 			 * and have very small receive buffers.  Give them a bit of
 			 * time here */
-			time.Sleep(20 * time.Millisecond)
+			time.Sleep(1 * time.Millisecond)
 			sx.txRaw([]byte{4, 20})
 		}
 
@@ -287,7 +287,7 @@ func (sx *SerialXport) Tx(bytes []byte) error {
 		 * carriage return (and possibly LF 2 bytes), */
 
 		/* all totaled, 124 bytes should work */
-		writeLen := util.Min(124, totlen-written)
+		writeLen := util.Min(1024, totlen-written)
 
 		writeBytes := base64Data[written : written+writeLen]
 		sx.txRaw(writeBytes)
