@@ -19,23 +19,20 @@
 #
 -->
 
-<a href="https://github.com/apache/mynewt-newtmgr/actions/workflows/build.yml">
-  <img src="https://github.com/apache/mynewt-newtmgr/actions/workflows/build.yml/badge.svg">
-<a/>
-
 # Newtmgr
 
 Newt Manager (newtmgr) is the application tool that enables a user to communicate with and manage
-remote devices running the Mynewt OS. It uses a connection profile to establish a connection with
-a device and sends command requests to the device.
-The newtmgr tool documentation can be found under [/docs](/docs) which are
-published at http://mynewt.apache.org/latest/os/modules/devmgmt/newtmgr.html
+remote devices running the Mynewt OS or Mcuboot.
 
 ### Building
 
-Build the newtmgr tool as follows:
+1. `cd newtmgr`
+2. `GO111MODULE=on go build`
 
-1. Unpack newtmgr source.
-2. Rename resulting `apache-mynewt-newtmgr-1.9.0` directory to `$GOPATH/src/mynewt.apache.org/newtmgr`
-3. `cd $GOPATH/src/mynewt.apache.org/newtmgr/newtmgr`
-4. `GO111MODULE=on go build`
+### Usage
+
+Upload app image
+`./newtmgr --conntype serial --connstring $SERIAL_PORT,mtu=2048 image upload $PATH_TO_APP_BINARY`
+
+Upload netcore image
+`./newtmgr --conntype serial --connstring $SERIAL_PORT,mtu=2048 image upload $PATH_TO_NET_BINARY -n 3`
